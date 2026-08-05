@@ -1,4 +1,4 @@
-# ADR 4 — Every mutation reports what actually happened
+# ADR 4. Every mutation reports what actually happened
 
 **Status:** accepted
 **Date:** 2026
@@ -15,10 +15,10 @@ The reverse also happened: a tool succeeded, the frontend also applied it locall
 
 Tool calls return an explicit outcome, not a boolean and not a message:
 
-- `applied` — the mutation changed persisted state
-- `no_change` — the request was valid but the state already matched, so nothing was written
-- `failed` — the mutation was attempted and did not succeed
-- `blocked` — a guard refused it, for example a destructive edit that wasn't clearly intended
+- `applied`. The mutation changed persisted state
+- `no_change`. The request was valid but the state already matched, so nothing was written
+- `failed`. The mutation was attempted and did not succeed
+- `blocked`. A guard refused it, for example a destructive edit that wasn't clearly intended
 
 Two rules follow from it:
 
@@ -27,7 +27,7 @@ Two rules follow from it:
 
 ## Consequences
 
-**Good.** "The AI said it changed something but nothing changed" became a diagnosable event with a status attached rather than a user complaint. Repeating the same instruction twice now produces `no_change` and creates no second action record — verified against a replayed session.
+**Good.** "The AI said it changed something but nothing changed" became a diagnosable event with a status attached rather than a user complaint. Repeating the same instruction twice now produces `no_change` and creates no second action record. Verified against a replayed session.
 
 **Bad.** Every tool has to be honest about which of the four it returns, and `no_change` in particular is easy to get wrong: a tool that always reports `applied` looks fine in tests and lies in production. This is enforced by convention and tests rather than by the type system, which I'm not fully happy with.
 

@@ -1,4 +1,4 @@
-# ADR 1 — Serve a SPA, prerender it at the edge for crawlers
+# ADR 1. Serve a SPA, prerender it at the edge for crawlers
 
 **Status:** accepted, running in production
 **Date:** 2026
@@ -7,7 +7,7 @@
 
 Organic search is the top of the funnel. The blog and destination pages are what bring travellers in months before they buy, so being invisible to crawlers would have removed the cheapest acquisition channel the business had.
 
-The app itself is a React SPA — a lot of it is authenticated, stateful, and interactive (the trip app, the admin panel, the AI planning workspace). Those parts gain nothing from server rendering.
+The app itself is a React SPA. A lot of it is authenticated, stateful, and interactive (the trip app, the admin panel, the AI planning workspace). Those parts gain nothing from server rendering.
 
 The obvious answer was to migrate to Next.js and get SSR. I didn't.
 
@@ -25,7 +25,7 @@ The crawler list includes AI agents alongside search engines: `gptbot`, `chatgpt
 
 ## Why not SSR
 
-Migrating to Next.js would have meant rewriting routing, data fetching, and auth across a codebase that was already large, to solve a problem that only affects the public marketing surface — maybe fifteen percent of the routes. The authenticated product would have carried the complexity of a framework it didn't need.
+Migrating to Next.js would have meant rewriting routing, data fetching, and auth across a codebase that was already large, to solve a problem that only affects the public marketing surface, maybe fifteen percent of the routes. The authenticated product would have carried the complexity of a framework it didn't need.
 
 It also would have introduced a server that has to stay up, be patched, and be paid for. With one developer and no infrastructure budget, "there is no server" was worth a lot.
 
@@ -33,7 +33,7 @@ It also would have introduced a server that has to stay up, be patched, and be p
 
 **Good.** Public pages are indexable and answerable by AI crawlers. The interactive product stayed simple. Cost stayed near zero. The whole thing is one file of Worker code that a person can read in ten minutes.
 
-**Bad.** The prerender path is a second rendering mode, which means a class of bug where the snapshot and the live app disagree. Cache invalidation after a content change is a manual concern. And it depends on user-agent detection, which is a heuristic, not a guarantee — an unlisted crawler gets the empty shell.
+**Bad.** The prerender path is a second rendering mode, which means a class of bug where the snapshot and the live app disagree. Cache invalidation after a content change is a manual concern. And it depends on user-agent detection, which is a heuristic, not a guarantee. An unlisted crawler gets the empty shell.
 
 **Watch out for.** Asset caching bit me hard once. After a deploy, Cloudflare on the custom domain kept serving a stale HTML fallback with a 200 for a newly hashed JS bundle, so users got a blank root and Vite reported a failed dynamic import. Fixed by isolating asset names per commit and setting `Cache-Control: no-store` on the JS and CSS paths, then verifying in a clean browser profile that the bundle came back as `application/javascript` with a cache bypass.
 
