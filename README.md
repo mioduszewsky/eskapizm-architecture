@@ -8,7 +8,7 @@ I designed and built it, and I co-run the company behind it. This repository is 
 
 **Timeline.** First commit September 2025. Single developer.
 
-**How it was built.** I do not have a computer science background. I came to this from business, and the platform was built with AI-assisted development, mostly Claude and Claude Code. The decisions in this write-up are mine: what to build, which trade-off to take, what to do when it broke in production. Most of the implementation was written by a model under my direction. If you were wondering how one person shipped this much in a year, that is the answer, and I would rather put it in the first paragraph than let you assume otherwise.
+**How it was built.** AI-assisted development, mostly Claude and Claude Code. The decisions in this write-up are mine: what to build, which trade-off to take, what to do when it broke in production. Most of the implementation was written by a model under my direction. That is the honest answer to how one person shipped this much in a year, and it is the part I find most interesting.
 
 ---
 
