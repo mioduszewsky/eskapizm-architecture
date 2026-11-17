@@ -4,7 +4,7 @@
 
 I designed and built it, and I co-run the company behind it. This repository is the part of that work I can share publicly: the architecture, the decisions, and why they went the way they did. The application code stays private. It is a company asset and it handles payments and customer data.
 
-**Scale, as of August 2026.** 3,566 commits. About 65k LOC TypeScript and TSX across 257 source files. 38 Edge Functions in production. 109 database migrations. 114 unit tests on the AI layer alone.
+**Scale, as of November 2026.** 3,844 commits. About 101k LOC TypeScript and TSX across 359 source files. 38 Edge Functions in production. 116 database migrations. 226 unit tests on the AI layer alone.
 
 **Timeline.** First commit September 2025. Single developer.
 
@@ -53,7 +53,7 @@ flowchart TB
         INV[Fakturownia + KSeF]
         MAIL[MailerLite / MailerSend]
         TASK[ClickUp]
-        AI[Claude API]
+        AI[LLM API<br/>via gateway]
         ANA[PostHog / GA4 / Meta CAPI]
     end
 
@@ -87,9 +87,9 @@ Three areas carry most of the difficulty.
 
 The interesting problem was not calling a model and showing the text. It was letting an operator edit a large structured document through conversation without the model quietly destroying work.
 
-The model does not emit the plan as free text. It calls **29 typed tools**, things like `add_day`, `modify_accommodation`, `group_accommodations`, `reorder_days` and `update_budget_item`. Each one is a narrow, validated mutation against the plan structure. Every call comes back with an explicit outcome, so the frontend knows whether anything actually changed. The plan is committed server-side before the UI is told to update, so a dropped connection cannot leave the two out of sync.
+The model does not emit the plan as free text. It calls **70 typed tools**, things like `add_day`, `modify_accommodation`, `group_accommodations`, `reorder_days` and `update_budget_item`. Each one is a narrow, validated mutation against the plan structure. Every call comes back with an explicit outcome, so the frontend knows whether anything actually changed. The plan is committed server-side before the UI is told to update, so a dropped connection cannot leave the two out of sync.
 
-That layer alone has 114 unit tests. This is exactly the kind of code where a regression is invisible until a customer's itinerary is missing a week.
+That layer alone has 226 unit tests. This is exactly the kind of code where a regression is invisible until a customer's itinerary is missing a week.
 
 Read more: [ADR 3, structured tools instead of free-text generation](docs/adr/0003-structured-tools-for-the-ai-agent.md) and [ADR 4, an explicit state contract for mutations](docs/adr/0004-explicit-state-contract-for-mutations.md).
 
@@ -145,7 +145,7 @@ The honest list: [what-id-do-differently.md](docs/what-id-do-differently.md).
 
 **Integrations.** Paynow, Fakturownia, KSeF, MailerLite, MailerSend, ClickUp, PostHog, GA4, Meta CAPI.
 
-**AI.** Claude via API, with a typed tool layer.
+**AI.** LLM via an AI gateway, with a typed tool layer.
 
 **Delivery.** GitHub Actions, migrations under review, smoke checks against production after deploy.
 

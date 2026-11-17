@@ -18,7 +18,7 @@ The public product got design attention because customers see it. The internal p
 
 ## Test the AI layer's contracts, not just its units
 
-114 unit tests on the planning layer, and the bugs that actually reached production were mostly not unit-level. They were mismatches between what an operator asked for, what the tool schema could express, and what the renderer could display. Three things that each worked correctly in isolation.
+226 unit tests on the planning layer, and the bugs that actually reached production were mostly not unit-level. They were mismatches between what an operator asked for, what the tool schema could express, and what the renderer could display. Three things that each worked correctly in isolation.
 
 A tool can pass every test and still be unable to represent the thing a user just asked for. What I was missing was tests at the level of "operator says X, does the observable state change accordingly", exercised against realistic sessions rather than synthetic fixtures.
 

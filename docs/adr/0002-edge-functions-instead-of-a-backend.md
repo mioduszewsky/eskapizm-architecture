@@ -5,7 +5,7 @@
 
 ## Context
 
-The platform needs server-side work: taking payments, issuing invoices, submitting e-invoices to the Polish KSeF system, sending transactional email, syncing tasks both ways with ClickUp, calling the Claude API, validating discount and affiliate codes, approving commissions, generating sitemaps.
+The platform needs server-side work: taking payments, issuing invoices, submitting e-invoices to the Polish KSeF system, sending transactional email, syncing tasks both ways with ClickUp, calling the model API, validating discount and affiliate codes, approving commissions, generating sitemaps.
 
 All of it needs secrets. None of it can run in the browser.
 

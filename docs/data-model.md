@@ -1,6 +1,6 @@
 # Data model
 
-33 tables across 109 migrations. They group into six domains. The travel plan is the centre. Everything else either sells it, produces it, or delivers it.
+33 tables across 116 migrations. They group into six domains. The travel plan is the centre. Everything else either sells it, produces it, or delivers it.
 
 This describes structure and relationships. Column definitions and row-level security policies are not published; the platform is live and takes payments.
 
