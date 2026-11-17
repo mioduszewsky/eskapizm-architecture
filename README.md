@@ -4,11 +4,11 @@
 
 I designed and built it, and I co-run the company behind it. This repository is the part of that work I can share publicly: the architecture, the decisions, and why they went the way they did. The application code stays private. It is a company asset and it handles payments and customer data.
 
-**Scale, as of November 2026.** 3,844 commits. About 101k LOC TypeScript and TSX across 359 source files. 38 Edge Functions in production. 116 database migrations. 226 unit tests on the AI layer alone.
+**Scale, as of November 2026.** 3,844 commits, almost all of them made by AI tools working under my direction. About 101k LOC TypeScript and TSX across 359 source files. 38 Edge Functions in production. 116 database migrations. 226 unit tests on the AI layer alone.
 
-**Timeline.** First commit September 2025. Single developer.
+**Timeline.** First commit September 2025. One person on the technical side, no engineering team.
 
-**How it was built.** AI-assisted development, mostly Claude and Claude Code. The decisions in this write-up are mine: what to build, which trade-off to take, what to do when it broke in production. Most of the implementation was written by a model under my direction. That is the honest answer to how one person shipped this much in a year, and it is the part I find most interesting.
+**How it was built.** AI-assisted development: Lovable for the first version, then Claude Code and Codex. My background is business and operations, and I do not write code by hand. The decisions in this write-up are mine: what to build, which trade-off to take, what to do when it broke in production. Most of the implementation was written by a model under my direction. That is the honest answer to how one person shipped this much in a year, and it is the part I find most interesting.
 
 ---
 
